@@ -1,0 +1,49 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+.turned{
+	background-size: cover;
+	background-color: white;
+}
+
+.btn {
+	display: block;
+	margin: 0 auto;
+	padding: 10px;
+	width: 240px;
+	height: 60px;
+	border: 1px solid grey;
+	border-radius: 10px;
+	background-color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	font-size: 22px;
+	content: 'Turn Off';
+}
+
+.input{
+	display: block;
+	margin: 90px 0;
+	padding: 18px;
+	background-color: #E6DDC4;
+	width: 500px;
+	height: 45px;
+	color: black;
+	border-radius: 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.btn:hover {
+	font-weight: bold;
+ 	border: 1px solid #bbb;
+	box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+}
