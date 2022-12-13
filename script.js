@@ -17,45 +17,56 @@
 //оголошуємо змінні
 
     let buttonClicked = document.getElementById('turn');
-    let turned = document.querySelector('.turned');
-    let input = document.querySelector('.input');
-    let turn = false;
+    let changeBG = document.querySelector('.turned');
+    let timeInput = document.querySelector('.input');
+    let turnOn;
 
 
-    function turning(){
-         if (turn) {
-        buttonClicked.innerHTML = "Turn On";
-        turned.style = 'background-color: black;';
-        input.innerText = `Last turn on: ` + new Date();
-        console.log(`Last turn on: `  + new Date());
-        turn = false;
-        } else {
-        buttonClicked.innerHTML = "Turn Off";
-        turned.style = 'background-color: white;';
-        input.innerText = `Last turn off: ` +  new Date();  
-        console.log(`Last turn off: `  +  new Date());
-        turn = true;
+    window.addEventListener('DOMContentLoaded', loadTime);
+
+    buttonClicked.addEventListener('click', switchover);
+    buttonClicked.addEventListener('dblclick', removeAllTasksFromLocalStorage);
+
+    function loadTime() {
+        //оголошуємо змінну яка буде використовуватись для інпута
+        let data = JSON.parse(localStorage.getItem('dateInput'));
+           console.log(data);
+        let condition = JSON.parse(localStorage.getItem('condition'));
+           console.log(condition);
+ 
+
+        if (data !== null){
+           timeInput.innerHTML = data;
+           buttonClicked.innerHTML = condition;
+           turnOn = JSON.parse(localStorage.getItem('turnon'));
+           console.log(localStorage.getItem('turnon'));
+           console.log(timeInput.innerHTML);
+            }
         }
-        localStorage.setItem('conditiionTime', new Date());
-        localStorage.setItem('conditiion', turn);
+
+    function switchover(){ 
+        let data = [];
+        data.push(timeInput).innerHTML;
+        if (turnOn) {
+            buttonClicked.innerHTML = "Turn Off";
+            changeBG.style = 'background-color: white;';
+            timeInput.innerHTML = `Last turn on: ` +  new Date();
+            console.log(`Last turn on: `  +  new Date());
+            turnOn = false;
+        } else {
+            buttonClicked.innerHTML = "Turn On";
+            changeBG.style = 'background-color: black;';
+            timeInput.innerHTML = `Last turn off: ` +  new Date();
+            console.log(`Last turn off: `  + new Date());
+            turnOn = true;
+        }
+        localStorage.setItem('dateInput', JSON.stringify(timeInput.innerHTML));
+        localStorage.setItem('condition', JSON.stringify(buttonClicked.innerHTML));
+        localStorage.setItem('turnon', JSON.stringify(turnOn));
     }
 
-    buttonClicked.addEventListener('click', turning);
+    function removeAllTasksFromLocalStorage(){
+            localStorage.clear();
+        }
 
 
-// let counter = localStorage.getItem('russophobiaLevel') || 0;
-
-//     buttonClicked.addEventListener('click', function(){
-//          if (turn) {
-//         buttonClicked.innerHTML = "Turn On";
-//         turned.style = 'background-color: black;';
-//         input.innerText = `Last turn on: ` + new Date();
-//         turn = false;
-//         } else {
-//         buttonClicked.innerHTML = "Turn Off";
-//         turned.style = 'background-color: white;';
-//         input.innerText = `Last turn off: ` + new Date();  
-//         turn = true;
-//         }
-//         localStorage.setItem(input.innerText, new Date());
-//     });
